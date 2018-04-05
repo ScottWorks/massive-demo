@@ -8,7 +8,7 @@ const connectionString =
 const app = express();
 app.use(bodyParser.json());
 
-const port = 34451;
+const port = 34996;
 
 app.get('/', (req, res) => {
   // gets the database connection
@@ -36,11 +36,11 @@ app.get('/incidents', (req, res) => {
 });
 
 app.post('/incidents', (req, res) => {
-  const incidents = req.body;
+  const incident = req.body;
   const db = req.app.get('db');
 
-  db.createIncident(incidents).then((sqlRes) => {
-    res.send(sqlRes).end();
+  db.createIncident(incident).then((sqlRes) => {
+    res.send(sqlRes[0]).end();
   });
 });
 
